@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_security
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: vasylkit
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope: profile, email
+
+  kafka:
+    topic:
+      name: mail
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+app:
+  auth:
+    tokenSecret: VeaoDnAH6o36xo4da3MOXHSzbeFMFAg1Q5seiRB2C94TEe4u1HlSvcTfLwxpjrHRItcnwwQm2hav6jv7g8Q1A2ITPNqzMRA/3n/S9sOe7SI=
+    tokenExpirationMsec: 86400000
